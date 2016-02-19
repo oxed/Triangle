@@ -617,7 +617,7 @@ public final class Encoder implements Visitor {
 
   public Object visitIdentifier(Identifier ast, Object o) {
     Frame frame = (Frame) o;
-    if (ast.decl.entity instanceof KnownRoutine) {
+    /*if (ast.decl.entity instanceof KnownRoutine) {
       ObjectAddress address = ((KnownRoutine) ast.decl.entity).address;
       emit(Machine.CALLop, displayRegister(frame.level, address.level),
 	   Machine.CBr, address.displacement);
@@ -634,7 +634,7 @@ public final class Encoder implements Visitor {
       int displacement = ((EqualityRoutine) ast.decl.entity).displacement;
       emit(Machine.LOADLop, 0, 0, frame.size / 2);
       emit(Machine.CALLop, Machine.SBr, Machine.PBr, displacement);
-    }
+    }*/
     return null;
   }
 
@@ -715,7 +715,10 @@ public final class Encoder implements Visitor {
 
   // Programs
   public Object visitProgram(Program ast, Object o) {
-    return ast.C.visit(this, o);
+    //return ast.C.visit(this, o);
+      if (ast.E != null) return ast.E.visit(this, o);
+      else if (ast.I != null) return ast.I.visit(this, o);
+      return ast.C.visit(this, o);
   }
 
   public Encoder (ErrorReporter reporter) {

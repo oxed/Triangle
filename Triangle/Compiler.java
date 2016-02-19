@@ -58,6 +58,7 @@ public class Compiler {
      * @return	true iff the source program is free of compile-time errors,
      *          otherwise false.
      */
+    @SuppressWarnings("unused")
     static boolean compileProgram (String sourceName, String objectName,
                                    boolean showingAST, boolean showingTable) {
 
@@ -114,6 +115,7 @@ public class Compiler {
      *                  the source filename.
      */
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
         boolean compiledOK;
 
         if (args.length != 1) {

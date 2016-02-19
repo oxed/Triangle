@@ -288,6 +288,7 @@ public final class Checker implements Visitor {
   }
 
   public Object visitConstDeclaration(ConstDeclaration ast, Object o) {
+    @SuppressWarnings("unused")
     TypeDenoter eType = (TypeDenoter) ast.E.visit(this, null);
     idTable.enter(ast.I.spelling, ast);
     if (ast.duplicated)
@@ -739,10 +740,13 @@ public final class Checker implements Visitor {
 
   // Programs
 
-  public Object visitProgram(Program ast, Object o) {
-    ast.C.visit(this, null);
-    return null;
-  }
+    public Object visitProgram(Program ast, Object o) {
+        //ast.C.visit(this, null);
+        if (ast.C != null) ast.C.visit(this, null);
+        else if (ast.E != null) ast.E.visit(this, null);
+        else ast.I.visit(this, null);
+        return null;
+    }
 
   // Checks whether the source program, represented by its AST, satisfies the
   // language's scope rules and type rules.

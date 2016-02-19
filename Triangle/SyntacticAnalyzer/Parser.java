@@ -150,7 +150,7 @@ public class Parser {
     currentToken = lexicalAnalyser.scan();
 
     try {
-      Command cAST = parseCommand();
+      Identifier cAST = parseIdentifier();
       programAST = new Program(cAST, previousTokenPosition);
       if (currentToken.kind != Token.EOT) {
         syntacticError("\"%\" not expected after end of program",

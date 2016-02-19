@@ -24,6 +24,7 @@ public final class Scanner {
   private StringBuffer currentSpelling;
   private boolean currentlyScanningToken;
 
+  @SuppressWarnings("unused")
   private boolean isLetter(char c) {
     return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
   }
@@ -36,11 +37,11 @@ public final class Scanner {
 
   private boolean isOperator(char c) {
     return (c == '+' || c == '-' || c == '*' || c == '/' ||
-	    c == '=' || c == '<' || c == '>' || c == '\\' ||
-	    c == '&' || c == '@' || c == '%' || c == '^' ||
-	    c == '?' ||
-	    c == 'n' || c == 'o' || c == 't' || c == 'a' ||
-	    c == 'd' || c == 'r');
+        c == '=' || c == '<' || c == '>' || c == '\\' ||
+        c == '&' || c == '@' || c == '%' || c == '^' ||
+        c == '?' ||
+        c == 'n' || c == 'o' || c == 't' || c == 'a' ||
+        c == 'd' || c == 'r');
   } 
 
 
@@ -126,7 +127,7 @@ public final class Scanner {
       takeIt();
       takeIt(); // the quoted character
       if (currentChar == '\'') {
-      	takeIt();
+        takeIt();
         return Token.CHARLITERAL;
       } else
         return Token.ERROR;
@@ -145,91 +146,91 @@ public final class Scanner {
 
     // NOT
     case 'n':
-    	takeIt();
-    	if (currentChar == 'o') {
-    		takeIt();
-    		if (currentChar == 't') {
-				takeIt();
-				return Token.OPERATOR;
-			}
-    	}
-    	return Token.ERROR;
+        takeIt();
+        if (currentChar == 'o') {
+            takeIt();
+            if (currentChar == 't') {
+                takeIt();
+                return Token.NOT;
+            }
+        }
+        return Token.ERROR;
     
     // AND
     case 'a':
-    	takeIt();
-    	if (currentChar == 'n') {
-    		takeIt();
-    		if (currentChar == 'd') {
-    			takeIt();
-    			return Token.OPERATOR;
-    		}
-    	}
-    	return Token.ERROR;
+        takeIt();
+        if (currentChar == 'n') {
+            takeIt();
+            if (currentChar == 'd') {
+                takeIt();
+                return Token.OPERATOR;
+            }
+        }
+        return Token.ERROR;
     
     // OR
     case 'o':
-    	takeIt();
-    	if (currentChar == 'r') {
-    		takeIt();
-    		return Token.OPERATOR;
-    	}
-    	return Token.ERROR;
+        takeIt();
+        if (currentChar == 'r') {
+            takeIt();
+            return Token.OPERATOR;
+        }
+        return Token.ERROR;
     
     // true
     case 't':
-    	takeIt();
-    	if (currentChar == 'r') {
-    		takeIt();
-    		if (currentChar == 'u') {
-    			takeIt();
-    			if (currentChar == 'e') {
-					takeIt();
-					return Token.BOOLEAN;
-				}
-			}
-    	}
-    	return Token.ERROR;
-    	
+        takeIt();
+        if (currentChar == 'r') {
+            takeIt();
+            if (currentChar == 'u') {
+                takeIt();
+                if (currentChar == 'e') {
+                    takeIt();
+                    return Token.BOOL;
+                }
+            }
+        }
+        return Token.ERROR;
+        
     // false
     case 'f':
-    	takeIt();
-    	if (currentChar == 'a') {
-    		takeIt();
-			if (currentChar == 'l'){
-				takeIt();
-				if (currentChar == 's') {
-					takeIt();
-					if (currentChar == 'e') {
-						takeIt();
-						return Token.BOOLEAN;
-					}
-				}
-			}
-		}
-    	return Token.ERROR;
-    	
+        takeIt();
+        if (currentChar == 'a') {
+            takeIt();
+            if (currentChar == 'l'){
+                takeIt();
+                if (currentChar == 's') {
+                    takeIt();
+                    if (currentChar == 'e') {
+                        takeIt();
+                        return Token.BOOL;
+                    }
+                }
+            }
+        }
+        return Token.ERROR;
+        
     // -> (IMPLICA)
     case '-':
-    	takeIt();
-    	if (currentChar == '>') {
-    		takeIt();
-    		return Token.OPERATOR;
-    	}
-    	return Token.ERROR;
-    	
+        takeIt();
+        if (currentChar == '>') {
+            takeIt();
+            return Token.OPERATOR;
+        }
+        return Token.ERROR;
+        
     // <-> (SE, SOMENTE SE)
     case '<':
-    	takeIt();
-    	if (currentChar == '-') {
-    		takeIt();
-    		if(currentChar == '>') {
-    			takeIt();
-    			return Token.OPERATOR;
-    		}
-    	}
-    	return Token.ERROR;
-    	
+        takeIt();
+        if (currentChar == '-') {
+            takeIt();
+            if(currentChar == '>') {
+                takeIt();
+                return Token.OPERATOR;
+            }
+        }
+        return Token.ERROR;
+        
     case ';':
       takeIt();
       return Token.SEMICOLON;

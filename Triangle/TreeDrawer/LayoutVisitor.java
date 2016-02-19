@@ -362,7 +362,11 @@ public class LayoutVisitor implements Visitor {
 
   // Programs
   public Object visitProgram(Program ast, Object obj) {
-    return layoutUnary("Program", ast.C);
+    //return layoutUnary("Program", ast.C);
+      if (ast.E != null) return layoutUnary("Program", ast.E);
+      else if (ast.I != null) return layoutUnary("Program", ast.I);
+      
+      return layoutUnary("Program", ast.C);
   }
 
   private DrawingTree layoutCaption (String name) {

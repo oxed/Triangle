@@ -32,7 +32,8 @@ public class Drawer {
 
   // Draw the AST representing a complete program.
 
-  public void draw(Program ast) {
+  @SuppressWarnings("deprecation")
+public void draw(Program ast) {
     theAST = ast;
     panel = new DrawerPanel(this);
     frame = new DrawerFrame(panel);
